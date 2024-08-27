@@ -1,14 +1,22 @@
+const { log } = require("console");
+const http = require("http");
 
-const {createServer} = require('http');
+const server = http.createServer((request, response) => {
+  const { url, method } = request;
 
-const server = createServer((req, res) => {
-  res.writeHead(200, { "Content-Type": "text/plain" });
-  res.end("Hello nodejs!\n");
+  if (url === "/") {
+    if(method === 'GET'){
+        return response.end('GET World!')
+    }else if(method === 'POST'){
+        return response.end('POST World!')
+    }
+  } else if (url === "/test") {
+    return response.end("Hello world!");
+  } else {
+    return response.end("end point not found!");
+  }
 });
 
-// starts a simple http server locally on port 3000
-server.listen(3000, "127.0.0.1", () => {
-  console.log("Listening on 127.0.0.1:3000");
+server.listen(3001, "localhost", () => {
+  console.log("server is running on http://localhost:3001");
 });
-
-// run with `node server.mjs`
