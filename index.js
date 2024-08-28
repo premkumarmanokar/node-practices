@@ -1,22 +1,22 @@
-const { log } = require("console");
-const http = require("http");
+//importing the express module
+const express = require("express");
 
-const server = http.createServer((request, response) => {
-  const { url, method } = request;
+//create an express application
+const app = express();
 
-  if (url === "/") {
-    if(method === 'GET'){
-        return response.end('GET World!')
-    }else if(method === 'POST'){
-        return response.end('POST World!')
-    }
-  } else if (url === "/test") {
-    return response.end("Hello world!");
-  } else {
-    return response.end("end point not found!");
-  }
+app.get("/", (req, res) => {
+  res.send("GET world!");
 });
 
-server.listen(3001, "localhost", () => {
+app.post("/", (req, res) => {
+  res.send("POST world!");
+});
+
+app.get("/test", (req, res) => {
+  res.send("GET test!");
+});
+
+//starting the server by listening on a port for incoming requests
+app.listen(3001, "localhost", () => {
   console.log("server is running on http://localhost:3001");
 });
