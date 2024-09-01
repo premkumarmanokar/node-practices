@@ -1,45 +1,20 @@
-//importing the express module
-const express = require("express");
-const fs = require("fs");
-//create an express application
-const app = express();
+const app = require("./app");
 
-app.get("/stats", (req, res) => {
-  fs.stat("./files/test.txt", (err, stats) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.json({
-        size: `${stats.size} bytes`,
-        isFile: stats.isFile(),
-        isDirectory: stats.isDirectory(),
-        isSymbolicLink: stats.isSymbolicLink(),
-      });
-    }
+// import the mongoose module
+const mongoose = require("mongoose");
+const { MONGODB_URI } = require("./utils/config");
+
+// connect to the MongoDB database
+mongoose
+  .connect(MONGODB_URI)
+  .then(() => {
+    console.log("Connected to the MongoDB database");
+
+    // start the server by listening on a port for incoming requests
+    app.listen(3001, () => {
+      console.log("Server is running on http://localhost:3001");
+    });
+  })
+  .catch((err) => {
+    console.log("Error connecting to the MongoDB database", err);
   });
-});
-
-app.post("/create", (req, res) => {
-  fs.writeFile("./files/newfile.txt", "Hello world!", (err) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send("File created successfully");
-    }
-  });
-});
-
-app.get("/read", (req, res) => {
-  fs.readFile("./files/test.txt", "utf8", (err, data) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send(data);
-    }
-  });
-});
-
-//starting the server by listening on a port for incoming requests
-app.listen(3001, "localhost", () => {
-  console.log("server is running on http://localhost:3001");
-});

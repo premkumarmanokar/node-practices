@@ -1,42 +1,45 @@
 {
-  "name": "backend",
+  "name": "fsd61wde",
   "version": "1.0.0",
-  "description": "backend repo for the course.",
+  "description": "It is a backend repo for the course FSD61WDE.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "dev":"nodemon index.js"
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/premkumarmanokar/node-practices.git"
+    "url": "git+https://github.com/githubscientist/node-fsd61wde.git"
   },
   "keywords": [
     "backend",
-    "postman",
     "nodeJS",
+    "expressJS",
     "mongoDB",
-    "VSCode",
+    "postMan",
+    "VSCodeIDE",
     "Axios",
     "body-parser",
     "cookie-parser",
     "morgan",
-    "emv",
+    "env",
     "jsonwebtoken",
-    "middlewares",
+    "middleware",
     "logger"
   ],
-  "author": "premkumar Manokar",
+  "author": "Premkumar Manokar",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/premkumarmanokar/node-practices/issues"
+    "url": "https://github.com/githubscientist/node-fsd61wde/issues"
   },
-  "homepage": "https://github.com/premkumarmanokar/node-practices#readme",
+  "homepage": "https://github.com/githubscientist/node-fsd61wde#readme",
   "devDependencies": {
     "nodemon": "^3.1.4"
   },
   "dependencies": {
-    "express": "^4.19.2"
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.6.0"
   }
 }
